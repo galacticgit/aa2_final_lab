@@ -1,6 +1,4 @@
 ---
-# tasks file for roles/flask
----
 - name: Add appdb1 IP address to app servers /etc/hosts
   lineinfile:
     dest: /etc/hosts
@@ -81,3 +79,4 @@
     name: "{{ flask_app_name }}.service"
     state: restarted 
     enabled: yes
+
