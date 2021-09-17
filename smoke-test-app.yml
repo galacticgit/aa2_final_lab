@@ -10,7 +10,7 @@
 
     - debug:
         msg: 
-          - "IP is {{ hostvars['database-01']['ansible_default_ipv4']['address'] }}"
+          - "IP is {{ hostvars['appdb1']['ansible_default_ipv4']['address'] }}"
           - "First App server  {{ groups.app_servers[0] }}" 
         verbosity: 2        
 
@@ -37,7 +37,7 @@
  
     - name: Check webserver for correct response
       uri:
-        url: "http://frontend.example.com/ping"
+        url: "http://{{ hostvars[groups['load_balancers'][0]].ansible_host }}/ping"
         return_content: yes
       until: '"alive" in result.content'
       retries: 10
